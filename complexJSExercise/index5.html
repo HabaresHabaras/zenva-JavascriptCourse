@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Object Methods</title>
+</head>
+<body>
+    <script>
+//functions can be added to an object just like another property
+//to refer to the object(player) you need to call it "this"
+//outside of the object, when the function is called, it will execute taking in the parameters
+//specified when calling the function
+//if addWeapon("axe") => axe will be pushed as newWeapon to "this" or the player object
+//when a function is inside an object, its a method
+       var player = {
+            x: 100, 
+            y: 200, 
+            energy: 10, 
+            weapons: ["sword", "gun"], 
+            addWeapon: function(newWeapon){
+                this.weapons.push(newWeapon)
+            }, 
+            addEnergy: function(e){
+                this.energy = this.energy + e;
+            }
+        };
+
+        //player weapons + axe + laser gun + knife
+        player.addWeapon("axe");
+        player.addWeapon("laser gun");
+        player.addWeapon("knife");
+
+        //player energy + 25
+        player.addEnergy(25);
+
+        console.log(player.weapons);
+        console.log(player.energy);
+        
+
+    
+    </script>
+</body>
+</html>

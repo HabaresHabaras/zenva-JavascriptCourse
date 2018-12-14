@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* give border to rectangle in css to see it in the DOM */
+
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        Animated Canvas
+    </h1>
+    <canvas id="myCanvas" width="500" height="300"></canvas>
+    <script>
+        var x = 10;
+        var y = 10;
+        var w = 20;
+        var h = 30;
+
+var speed = 2;
+var speedY = 0.5;
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+var update = function(){
+    x = x + speed;
+    //also y gets increased 0.5 each time the rectangle is refreshed
+    //so the rectangle goes to the right and down
+    y = y + speedY;
+}
+
+var draw = function(){
+    ctx.clearRect(0, 0, 500, 300);
+    ctx.fillStyle = "rgb(200, 0, 200)";
+    ctx.fillRect(x, y, w, h);
+
+};
+
+        var step = function () {
+            update();
+            draw();
+            //x keeps on increasing cuz its getting added speed(2) everytime the canvas refreshes
+
+            console.log(x);
+
+            //refreshes the canvas everytime, after doing so, step is called again
+            window.requestAnimationFrame(step);
+        };
+
+        step();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Html Canvas Element</title>
+    <style>
+        /* give border to rectangle in css to see it in the DOM */
+    canvas {border: 1px solid black;}
+    </style>
+</head>
+<body>
+    <h1>Canvas</h1>
+    <canvas width="200" height="200" id="myCanvas"></canvas>
+    <script>
+    //document is DOM, getElementById is just to grab the id "myCanvas"
+    var canvas = document.getElementById("myCanvas");
+    //this to make a rectangle inside of "myCanvas"
+    var ctx = canvas.getContext("2d");
+
+    //color the rectangle is filled with
+    ctx.fillStyle = "rgb(200, 0, 200)";
+    //four corners of the rectangle over x and y
+    ctx.fillRect(50, 40, 100, 30);
+
+    //Anoda one
+    ctx.fillStyle = "rgb(100, 100, 200)";
+    ctx.fillRect(50, 140, 100, 30);
+    </script>
+</body>
+</html>

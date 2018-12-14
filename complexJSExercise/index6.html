@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Function Expressions</title>
+</head>
+
+<body>
+    <script>
+
+        //when you create a function and assign it to a variable
+        //you make a function expression
+        var fly = function(){
+            console.log("you are flying");
+        };
+
+        //fly is a function expression
+        fly();
+
+        //superpower is made to log "no superpower"
+        var player = {
+            x: 100,
+            y: 200,
+            energy: 10,
+            weapons: ["sword", "gun"],
+            superpower: function () {
+                console.log("no superpower");
+            }
+        };
+
+        //here we can change superpower to be equal to the function expression "fly"
+        player.superpower = fly;
+        //here we execute it and it will no longer log "no superpower" but "im flying"
+        player.superpower();
+    </script>
+</body>
+
+</html>

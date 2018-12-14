@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nested functions</title>
+</head>
+
+<body>
+    <!-- Functions inside other functions -->
+    <script>
+        //decorate is nested in showEverywhere
+        //it decorates the text, befre showEverywhere is run
+        //and it logs it and alerts it
+
+        function showEverywhere(text) {
+            function decorate(a) {
+                return "###---" + a + "---###";
+            };
+            text = decorate(text);
+            console.log(text);
+            alert(text);
+        };
+        //if decorate is ran outside of showEverywhere
+        //there will be an error, cuz it only exists in the local scope
+        //of showEverywhere, not in the global scope
+        // decorate("Ande, ande, la marimonera")
+        showEverywhere("Hello world");
+
+    </script>
+</body>
+
+</html>
