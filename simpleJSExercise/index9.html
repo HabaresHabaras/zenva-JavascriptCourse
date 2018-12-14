@@ -11,7 +11,17 @@
 <body>
 Multidimensional Arrays
     <script>
-        var a = [23, 33, [], 25]
+        // to access and array inside another array, start by selecting the outermost array
+        //and then specify in which position(0, 1, 2 , 3...)the next array is on
+        var a = [23, 33, ["a", 23, [1, 2, 3, 4]], 25];
+
+        console.log(a[2]);
+        console.log(a[2][2]);
+        console.log(a[2][2][1]);
+
+        a[2][2][2] = 75;
+        console.log(a[2][2][2]);
+
     </script>
 
 </body>
