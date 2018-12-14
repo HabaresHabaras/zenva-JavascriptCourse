@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    Objects
+    <script>
+        // this is an object, it has properties
+        var player = {
+            name: "Your Name",
+            energy: 100,
+            lives: 2,
+            x: 19,
+            y: 100,
+            color: "blue"
+        };
+        // logs the whole object
+        console.log(player);
+        // logs only the name
+        console.log(player.name);
+        // logs only the color
+        console.log(player.color);
+        // gives new name to the object
+        player.name = "new name";
+        console.log(player);
+        // creates new property that contains a new object
+        player.friend = {name: "pablo"};
+        // creates new property named weapon
+        player.weapon = "sword";
+
+
+    </script>
+</body>
+
+</html>
