@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- on the meta, if you put user-scalable=no, the user wont be able to pinch the screen
+    and make it smaller or zoom in, so it looks like a static game -->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>For loops</title>
+    <style>
+        /* give border to rectangle in css to see it in the DOM */
+
+        canvas {
+            width: 100%
+        }
+        /* remove default padding and margin, and color black the background */
+        body {
+            padding: 0;
+            margin: 0;
+            background-color:black;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h1>For loops</h1> -->
+    <canvas id="myCanvas" width="640" height="360"></canvas>
+    <script>
+
+        window.addEventListener("load", function () {
+
+            var GAME_WIDTH = 640;
+            var GAME_HEIGHT = 360;
+
+            var gameIsLive = true;
+
+
+            var enemies = [{
+                x: 100,
+                y: 100,
+                speedY: 1,
+                w: 40,
+                h: 40
+            },
+            {
+                x: 260,
+                y: 100,
+                speedY: 2,
+                w: 40,
+                h: 40
+            },
+            {
+                x: 380,
+                y: 100,
+                speedY: 2,
+                w: 40,
+                h: 40
+            },
+            {
+                x: 450,
+                y: 100,
+                speedY: 7,
+                w: 40,
+                h: 40
+            }
+            ];
+
+            //player object
+            var player = {
+                x: 10,
+                y: 160,
+                speedX: 2,
+                w: 40,
+                h: 40,
+                isMoving: false
+            };
+
+
+            //two functions as variables so they can be called on the event listeners down below
+            //when the mouse is down or up, moveplayer and stop player execute by changing isMoving to
+            //true or false
+            var movePlayer = function () {
+                player.isMoving = true
+            };
+
+              var stopPlayer = function () {
+                player.isMoving = false
+            };
+
+
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+
+
+            canvas.addEventListener("mousedown", movePlayer);
+            canvas.addEventListener("mouseup", stopPlayer);
+
+//touchstart makes the player move if someone touches the touch screen on a touch device
+//touchend makes the player stop when the user stops pressing the touch screen
+            canvas.addEventListener("touchstart", movePlayer);
+            canvas.addEventListener("touchend", stopPlayer);
+
+            var update = function () {
+
+                //update player
+                if (player.isMoving) {
+                    player.x += player.speedX;
+                }
+
+                //update enemies
+                var n = enemies.length;
+                enemies.forEach(function (element, index) {
+
+                    if(checkCollision(player, element)){
+
+                    gameIsLive = false;
+                    alert("Game Over");
+
+                    window.location = "";
+                    }
+
+                    element.y += element.speedY;
+
+
+                    if (element.y <= 10) {
+                        element.y = 10;
+                        element.speedY *= -1;
+
+
+                    } else if (element.y >= GAME_HEIGHT - 30) {
+                        element.y = GAME_HEIGHT - 30;
+                        element.speedY *= -1;
+                    }
+                });
+            };
+
+            var draw = function () {
+                ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+                //draw player
+                ctx.fillStyle = "#00FF00";
+                ctx.fillRect(player.x, player.y, player.w, player.h);
+
+                //draw enemies
+                ctx.fillStyle = "#3333FF";
+
+                var n = enemies.length
+                enemies.forEach(function (element, index) {
+                    ctx.fillRect(element.x, element.y, element.w, element.h)
+                })
+            };
+
+            var step = function () {
+                update();
+                draw();
+                if(gameIsLive){
+                window.requestAnimationFrame(step);
+                }
+            };
+
+            var checkCollision = function(rect1, rect2){
+                var closeOnWidth = Math.abs(rect1.x - rect2.x) <= Math.max(rect1.w, rect2.w);
+                var closeOnHeight = Math.abs(rect1.y - rect2.y) <= Math.max(rect1.h, rect2.h)
+                return closeOnHeight && closeOnWidth;
+            };
+            step();
+        });
+
+
+    </script>
+
+</body>
+
+</html>

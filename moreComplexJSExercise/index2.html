@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>While loops</title>
+    <style>
+        /* give border to rectangle in css to see it in the DOM */
+
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>While loops</h1>
+    <canvas id="myCanvas" width="640" height="360"></canvas>
+    <script>
+        // Instead of logging 1-1000 by calling console.log a thousand times, use a loop
+        // console.log(1);
+        // console.log(2);
+        // console.log(3);
+        // console.log(4);
+
+        var i = 1;
+        //this will log 1 - 1000 in a few seconds, cuz while i is not a thousand, one should be added to i and logged
+        while (i <= 1000) {
+            console.log(i)
+            i = i + 1;
+
+        };
+
+        var GAME_WIDTH = 640;
+        var GAME_HEIGHT = 360;
+
+        var enemies = [{
+            x: 100,
+            y: 100,
+            speedY: 1,
+            w: 40,
+            h: 40
+        },
+        {
+            x: 260,
+            y: 100,
+            speedY: 2,
+            w: 40,
+            h: 40
+        },
+        {
+            x: 380,
+            y: 100,
+            speedY: 2,
+            w: 40,
+            h: 40
+        },
+        {
+            x: 450,
+            y: 100,
+            speedY: 7,
+            w: 40,
+            h: 40
+        }
+        ];
+
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var update = function () {
+            var j = 0;
+            var n = enemies.length;
+            while (j < n) {
+                // enemies[j].y = enemies[j].y + enemies[j].speedY;
+                enemies[j].y += enemies[j].speedY;
+
+                j = j + 1;
+            }
+        };
+
+        var draw = function () {
+            ctx.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+            ctx.fillStyle = "#3333FF";
+            var j = 0;
+            var n = enemies.length;
+            while (j < n) {
+                ctx.fillRect(enemies[j].x, enemies[j].y, enemies[j].w, enemies[j].h);
+                j = j + 1;
+            }
+        };
+
+        var step = function () {
+            update();
+            draw();
+
+            window.requestAnimationFrame(step);
+        };
+
+        step();
+
+
+
+    </script>
+
+</body>
+
+</html>

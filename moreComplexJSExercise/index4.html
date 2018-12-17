@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Break - Continue</title>
+</head>
+
+<body>
+    <h1>Break - Continue</h1>
+    <script>
+        var numbers = [1, -20, -9, 23, 33, -7, 66, -29, 55, -1, 101, -33, 55];
+
+        var l = numbers.length;
+        //use continue to skip something on a for loop
+        //if the number on the numbers array, is less than 0
+        //continue, or skip it. This will log all the numbers over 0, no negative numbers
+        for (var i = 0; i < l; i++) {
+            if (numbers[i] < 0) {
+                continue;
+            }
+            //break stops the for loop, here if a number from the array(i) is more than 100
+            //the for loop stops, and no more numbers are logged
+            if (numbers[i] > 100) {
+                break;
+            }
+            console.log(numbers[i]);
+        }
+
+
+
+    </script>
+</body>
+
+</html>
