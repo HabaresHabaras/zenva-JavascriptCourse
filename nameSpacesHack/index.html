@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Javascript Programming Libraries</title>
+</head>
+<body>
+
+
+    <!-- Here we are loading two different libraries that contain two definitions
+    for the same sayHello() function. If sayHello() is called on the script, only the second definition will execute
+hence alerting the user Hello! but not logging it -->
+    <script src="library1.js"></script>
+    <script src="library2.js"></script>
+    <script>
+        // if instead of calling sayHello(), we refer to the sayHello function inside our
+        // personalized object, which is randomPersonalizedName. We will only access that definition
+        // of sayHello, and will not alert it but only log it
+    
+    // To alert it
+        // sayHello();
+
+    //To log it
+        randomPersonalizedName.sayHello();
+    </script>
+
+    
+</body>
+</html>

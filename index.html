@@ -126,9 +126,17 @@
 
                 if (checkCollision(player, goal)) {
                     gameIsLive = false;
-                    alert("You\'ve Won, Madafaka!");
-
-                    window.location = "";
+                    alert("You\'ve won, next level!!!!");
+                    level++;
+                    player.x = 10;
+                    player.isMoving = false;
+                    console.log("level " + level);
+                   enemies.forEach(function(element, index){
+                     if(element.speedY>0){
+                       element.speedY+=level;
+                     }else{element.speedY-=level}
+                   });
+                    gameIsLive = true;
                 }
                 //update player
                 if (player.isMoving) {
